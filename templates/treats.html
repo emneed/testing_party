@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Yummy!{% endblock %}
+
+{% block content %}
+
+  <h2>Treats</h2>
+  <table class="table">
+    <thead>
+    <th>Type</th>
+    <th>Description</th>
+    <th>Who</th>
+    </thead>
+    <tbody>
+    {% for treat in treats %}
+      <tr>
+        <td>{{ treat['type'] }}</td>
+        <td>{{ treat['description'] }}</td>
+        <td>{{ treat['who'] }}</td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+
+  {% if most %}
+    <p>We have so many {{ most }}s already. <a href='/add_treat'>Can you bring a {{ least }}?</a></p>
+  {% else %} 
+    <p>Our party is so sad! <a href='/add_treat'>Can you bring a treat?</a></p> 
+  {% endif %}
+
+{% endblock %}

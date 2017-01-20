@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block title %}Bring a Treat!{% endblock %}
+
+{% block content %}
+
+    <h2>What will you bring?</h2>
+
+    <form action='/treat' method='POST'>
+        Food Item: <input type="text" name="treat" value="delicious"><br>
+        Food Type: <select name="type">
+                        <option value="appetizer">Appetizer</option>
+                        <option value="dessert">Dessert</option>
+                        <option value="drink">Drink</option>
+                    </select><br>
+        <input type="submit">
+    </form>
+
+{% endblock %}
