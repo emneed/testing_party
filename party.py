@@ -125,10 +125,12 @@ def homepage():
     return render_template("homepage.html")
 
 
-@app.route("/treats")
+@app.route("/treats", methods=["GET", "POST"])
 def show_treats():
     """Show treats people are bringing."""
 
+    # Use request object method .methods() to give different behavior based on
+    # GET or POST
     treats = get_treats()
 
     most, least = most_and_least_common_type(get_treats())
@@ -137,6 +139,14 @@ def show_treats():
                            treats=treats,
                            most=most,
                            least=least)
+
+    # Run only on POST request
+    # treat = request.form.get("treat")
+    # ttype = request.form.get("type")
+
+    # if treat:
+    #     flash("Thanks for adding " + treat)
+    #     return redirect("/treats")
 
 
 @app.route("/rsvp", methods=['POST'])
@@ -159,8 +169,7 @@ def rsvp():
 
 @app.route("/add_treat")
 def add_treat():
-    """Add a treat to the party's list"""
-
+    """Allow adding a treat to the party's list"""
     return render_template("add_treat.html")
 
 if __name__ == "__main__":
